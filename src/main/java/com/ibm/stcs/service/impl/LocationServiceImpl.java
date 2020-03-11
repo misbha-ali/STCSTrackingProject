@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ibm.stcs.domain.Covid19;
+import com.ibm.stcs.domain.Covid19Repository;
 import com.ibm.stcs.domain.GCCStates;
 import com.ibm.stcs.domain.GccStatesRepository;
 import com.ibm.stcs.domain.Panorama;
@@ -25,6 +27,102 @@ public class LocationServiceImpl implements LocationService{
 	@Autowired
 	private PersonRepository personRepository;
 	
+	@Autowired
+	private Covid19Repository covid19Repository;
+	
+	
+	public List<Covid19> createCovid19Data() {
+		
+    	Covid19 covid19 = new Covid19();
+    	List<Covid19> covid19Details = new ArrayList<Covid19>();
+    	
+    	
+    	//first
+    	//covid19.setId(1);
+    	covid19.setState("United Arab Emirates");
+    	covid19.setCountry("United Arab Emirates");
+    	covid19.setConfirmedCases(21);
+    	covid19.setDeaths(0);
+    	covid19.setRecovered(5);
+    	covid19.setLatitude("24.0000");	
+    	covid19.setLogitude("54.0000");
+    	covid19Details.add(covid19);
+    	
+    	
+    	
+    	
+    	
+    	//second
+    	
+    	covid19 = new Covid19();
+    	//covid19.setId(2);
+    	covid19.setState("Bahrain");
+    	covid19.setCountry("Bahrain");
+    	covid19.setConfirmedCases(85);
+    	covid19.setDeaths(0);
+    	covid19.setRecovered(4);
+    	covid19.setLatitude("26.0275");	
+    	covid19.setLogitude("50.5500");
+    	covid19Details.add(covid19);    	
+       	
+    	
+    	
+    	//third
+    	covid19 = new Covid19();
+    	//covid19.setId(3);
+    	covid19.setState("Oman");
+    	covid19.setCountry("Oman");
+    	covid19.setConfirmedCases(16);
+    	covid19.setDeaths(0);
+    	covid19.setRecovered(2);
+    	covid19.setLatitude("21.0000");	
+    	covid19.setLogitude("57.0000");
+    	covid19Details.add(covid19);
+    	
+    	//forth
+    	covid19 = new Covid19();
+    	//covid19.setId(4);
+    	covid19.setState("Kuwait");
+    	covid19.setCountry("Kuwait");
+    	covid19.setConfirmedCases(64);
+    	covid19.setDeaths(0);
+    	covid19.setRecovered(1);
+    	covid19.setLatitude("29.5000");		
+    	covid19.setLogitude("47.7500");
+    	covid19Details.add(covid19);
+    	
+    	//fifth
+    	covid19 = new Covid19();
+    	//covid19.setId(5);
+    	covid19.setState("Qatar");
+    	covid19.setCountry("Qatar");
+    	covid19.setConfirmedCases(15);
+    	covid19.setDeaths(0);
+    	covid19.setRecovered(0);
+    	covid19.setLatitude("25.3548");		
+    	covid19.setLogitude("51.1839");
+    	covid19Details.add(covid19);
+    
+    	//sixth
+    	covid19 = new Covid19(); 
+    	//covid19.setId(6);
+    	covid19.setCountry("Saudi Arabia"); 
+    	covid19.setState("Saudi Arabia");
+    	covid19.setConfirmedCases(11); 
+    	covid19.setDeaths(0);
+    	covid19.setRecovered(0); 
+    	covid19.setLatitude("24.0000");
+    	covid19.setLogitude("45.0000"); 
+		  covid19Details.add(covid19);
+	 
+		  covid19Repository.saveAll(covid19Details);
+    	return covid19Repository.findAll();
+
+	}
+	
+	public List<Covid19> getCovid19Data(){
+		return covid19Repository.findAll();
+	}
 	
 	public List<GCCStates> createGCCStates() {
 		List<GCCStates> gccStatesList = new ArrayList<GCCStates>();
@@ -32,46 +130,34 @@ public class LocationServiceImpl implements LocationService{
     	
     	//first
     	gCCStates.setId(1);
-    	gCCStates.setProvince("United Arab Emirates");
-    	gCCStates.setRegion("United Arab Emirates");
-    	gCCStates.setConfirmedCases(21);
-    	gCCStates.setDeaths(0);
-    	gCCStates.setRecovered(5);
+    	gCCStates.setCountryName("United Arab Emirates");    	
     	gCCStates.setLatitude("24.0000");	
     	gCCStates.setLogitude("54.0000");
     	gccStatesList.add(gCCStates);
     	
     	//second
-    	gCCStates.setId(2);
-    	gCCStates.setProvince("Bahrain");
-    	gCCStates.setRegion("Bahrain");
-    	gCCStates.setConfirmedCases(85);
-    	gCCStates.setDeaths(0);
-    	gCCStates.setRecovered(4);
+    	
+       	gCCStates = new GCCStates();
+       	gCCStates.setId(2);
+    	gCCStates.setCountryName("Bahrain");    
     	gCCStates.setLatitude("26.0275");	
     	gCCStates.setLogitude("50.5500");
     	gccStatesList.add(gCCStates);
     	
     	//third
+    	
     	gCCStates = new GCCStates();
     	gCCStates.setId(3);
-    	gCCStates.setProvince("Oman");
-    	gCCStates.setRegion("Oman");
-    	gCCStates.setConfirmedCases(16);
-    	gCCStates.setDeaths(0);
-    	gCCStates.setRecovered(2);
+       	gCCStates.setCountryName("Oman");   	
     	gCCStates.setLatitude("21.0000");	
     	gCCStates.setLogitude("57.0000");
     	gccStatesList.add(gCCStates);
     	
     	//forth
+    	
     	gCCStates = new GCCStates();
     	gCCStates.setId(4);
-    	gCCStates.setProvince("Kuwait");
-    	gCCStates.setRegion("Kuwait");
-    	gCCStates.setConfirmedCases(64);
-    	gCCStates.setDeaths(0);
-    	gCCStates.setRecovered(1);
+       	gCCStates.setCountryName("Kuwait");    	
     	gCCStates.setLatitude("29.5000");		
     	gCCStates.setLogitude("47.7500");
     	gccStatesList.add(gCCStates);
@@ -79,11 +165,7 @@ public class LocationServiceImpl implements LocationService{
     	//fifth
     	gCCStates = new GCCStates();
     	gCCStates.setId(5);
-    	gCCStates.setProvince("Qatar");
-    	gCCStates.setRegion("Qatar");
-    	gCCStates.setConfirmedCases(15);
-    	gCCStates.setDeaths(0);
-    	gCCStates.setRecovered(0);
+       	gCCStates.setCountryName("Qatar");    	
     	gCCStates.setLatitude("25.3548");		
     	gCCStates.setLogitude("51.1839");
     	gccStatesList.add(gCCStates);
@@ -91,11 +173,7 @@ public class LocationServiceImpl implements LocationService{
     	//sixth
 		  gCCStates = new GCCStates(); 
 		  gCCStates.setId(6);
-		  gCCStates.setProvince("Saudi Arabia"); 
-		  gCCStates.setRegion("Saudi Arabia");
-		  gCCStates.setConfirmedCases(11); 
-		  gCCStates.setDeaths(0);
-		  gCCStates.setRecovered(0); 
+		  gCCStates.setCountryName("Saudi Arabia"); 
 		  gCCStates.setLatitude("24.0000");
 		  gCCStates.setLogitude("45.0000"); 
 		  gccStatesList.add(gCCStates);
@@ -105,8 +183,13 @@ public class LocationServiceImpl implements LocationService{
 
 	}
 	
+	
 	public List<GCCStates> getGCCStates(){
 		return gccStatesRepository.findAll();
+	}
+	
+	public List<GCCStates> getGCCStatesFromCovid(Integer covidId){
+		return gccStatesRepository.getGCCStatesFromCovid(covidId);
 	}
 	
 	public GCCStates getGCCStatesByLatLog(String latitude, String logitude) {

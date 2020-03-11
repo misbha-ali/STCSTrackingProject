@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ibm.stcs.domain.Covid19;
 import com.ibm.stcs.domain.GCCStates;
 import com.ibm.stcs.domain.Panorama;
 import com.ibm.stcs.domain.Person;
@@ -33,9 +34,27 @@ import com.ibm.stcs.serivce.LocationService;
 
 
 	    @GetMapping(path="/getGCCStates", produces = MediaType.APPLICATION_JSON_VALUE)
-	    public List<GCCStates> gCCStates() {
+	    public List<GCCStates> getGCCStates() {
 	    	
 	        return locSer.createGCCStates();
+	    }
+	    
+	    @GetMapping(path="/getCovidData", produces = MediaType.APPLICATION_JSON_VALUE)
+	    public List<Covid19> getCovidData() {
+	    	
+	        return locSer.getCovid19Data();
+	    }
+	    
+	    @GetMapping(path="/createCovidData", produces = MediaType.APPLICATION_JSON_VALUE)
+	    public List<Covid19> createCovidData() {
+	    	
+	        return locSer.createCovid19Data();
+	    }
+	    
+	    @GetMapping(path="/getGCCStatesFromCovid/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	    public List<GCCStates> getGCCStatesFromCovid(@PathVariable Integer id) {
+	    	
+	        return locSer.getGCCStatesFromCovid(id);
 	    }
 	    
 	    @GetMapping(path="/getGCCStatesByLatLog/{latitude}/{logitude}",produces = MediaType.APPLICATION_JSON_VALUE)
